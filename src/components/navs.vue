@@ -3,7 +3,7 @@
     <div class="header-nav">
       <ul class="nav-list">
         <li class="nav-item" v-for="nav in navs">
-          <router-link :to="'/car/' + nav.nav">{{nav.name}}</router-link>
+          <router-link :to="'/car/' + nav.nav">{{nav.name.charAt(0)}}</router-link>
         </li>
       </ul>
     </div>
@@ -18,7 +18,7 @@ export default {
       navs: [
         {
           name: '中国',
-          nav: 'gouchan'
+          nav: 'guochan'
         },
         {
           name: '日本',
@@ -138,8 +138,15 @@ export default {
     margin: 0;
     display: flex;
     width: 100%;
-    line-height: 40px;
-    height: 40px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    background: #fff;
+    border-bottom: 3px solid #ddd;
+    line-height: 54px;
+    height: 54px;
     .sep {
       height: 1px;
       background-color: #f0f0f0;
@@ -155,10 +162,9 @@ export default {
     .nav-item {
       flex:1;
       text-align: center;
-      margin-right: 20px;
       >a, >div {
         color: #666;
-        height: 40px;
+        height: 54px;
         border-bottom: 3px solid transparent;
         display: block;
         &.router-link-active {

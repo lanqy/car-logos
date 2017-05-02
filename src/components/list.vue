@@ -1,6 +1,18 @@
 <template>
-  <div class="container center">
-
+  <div class="car-list">
+    <h1>{{list.title}}</h1>
+    <div class="container center">
+      <ul class="row">
+        <li v-for="item in list.items" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <div class="car">
+            <router-link :to="'/car/'+ item.info.cate + '/' + item.info.id">
+              <img :src="item.logo" alt="">
+              <h2>{{item.title}}</h2>
+            </router-link>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -17,12 +29,15 @@ import qita from '../assets/qita.json'
 export default {
   name: 'list',
   props: {
-    country: String
+    country: {
+      type: String,
+      default: 'guochan'
+    }
   },
   data () {
     return {
-      list: window[this.country],
-      countryArr: [
+      list: [],
+      cars: {
         guochan,
         deguo,
         riben,
@@ -32,23 +47,43 @@ export default {
         yidali,
         yingguo,
         qita
-      ]
+      }
     }
   },
   watch: {
     country (value) {
-      console.log(value)
+      this.carList(value)
     }
   },
   methods: {
-    list: function (country) {}
+    carList (country) {
+      this.list = this.cars[country]
+    }
   },
   created: function () {
-    console.log(this.countryArr)
-    console.log(this.country)
+    this.carList(this.country)
   }
 }
 </script>
 
 <style lang="css">
+*{margin:0;padding:0;}
+.car-list{padding-top: 54px;}
+.car-list h1{text-align: center;margin-bottom: 25px;}
+.car-list li{text-align: center;list-style: none;
+}
+.car-list li div.car{
+    padding: 4px;
+    line-height: 1.4;
+    border-radius: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    width: 100%;
+    height: 168px;
+    margin-bottom: 24px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+.car-list li div.car a{display: block;height: 168px;}
 </style>
