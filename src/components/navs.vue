@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="header-nav">
       <ul class="nav-list">
-        <li class="nav-item" v-for="nav in navs">
+        <li class="nav-item" v-for="nav in navs" @click="navHandlerClick(nav.nav)">
           <router-link :to="'/car/' + nav.nav">{{nav.name.charAt(0)}}</router-link>
         </li>
       </ul>
@@ -55,7 +55,11 @@ export default {
       ]
     }
   },
-  methods: {}
+  methods: {
+    navHandlerClick (nav) {
+      this.$emit('click', nav)
+    }
+  }
 }
 </script>
 

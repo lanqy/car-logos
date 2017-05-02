@@ -6,8 +6,10 @@
         <li v-for="item in list.items" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
           <div class="car">
             <router-link :to="'/car/'+ item.info.cate + '/' + item.info.id">
-              <img :src="item.logo" alt="">
-              <h2>{{item.title}}</h2>
+              <div class="item">
+                <img :src="item.logo" alt="">
+                <h2>{{item.title}}</h2>
+              </div>
             </router-link>
           </div>
         </li>
@@ -17,51 +19,32 @@
 </template>
 
 <script>
-import guochan from '../assets/guochan.json'
-import deguo from '../assets/deguo.json'
-import riben from '../assets/riben.json'
-import meiguo from '../assets/meiguo.json'
-import faguo from '../assets/faguo.json'
-import hanguo from '../assets/hanguo.json'
-import yidali from '../assets/yidali.json'
-import yingguo from '../assets/yingguo.json'
-import qita from '../assets/qita.json'
 export default {
   name: 'list',
   props: {
     country: {
       type: String,
       default: 'guochan'
-    }
-  },
-  data () {
-    return {
-      list: [],
-      cars: {
-        guochan,
-        deguo,
-        riben,
-        meiguo,
-        faguo,
-        hanguo,
-        yidali,
-        yingguo,
-        qita
+    },
+    item: {
+      type: Object,
+      default: function () {
+        return {}
       }
     }
   },
   watch: {
-    country (value) {
-      this.carList(value)
+    item (item) {
+      this.list = item
     }
   },
-  methods: {
-    carList (country) {
-      this.list = this.cars[country]
+  data () {
+    return {
+      list: this.item
     }
   },
   created: function () {
-    this.carList(this.country)
+    this.list = this.$parent.cars[this.country]
   }
 }
 </script>
@@ -86,4 +69,5 @@ export default {
     border: 1px solid #ddd;
   }
 .car-list li div.car a{display: block;height: 168px;}
+.car-list li div.car .item{height: 160px;}
 </style>
