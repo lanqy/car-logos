@@ -8,6 +8,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'List',
+      component: List,
+      props: true
+    },
+    {
       path: '/car/:country',
       name: 'List',
       component: List,
