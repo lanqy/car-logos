@@ -57,6 +57,7 @@ export default {
 <style lang="css">
 .container .content{line-height: 28px;}
 .detail__content{padding-top: 54px;}
+.detail__content p{line-height: 28px;}
 .detail__top_nav{height: 54px;line-height: 54px;background: #fff;z-index: 101;border-bottom: 3px solid #ddd;position: fixed;left: 0;top:0;width: 100%;}
 .detail__top_nav a{margin-left: 1rem;}
 .detail{width: 100%;height:100%;z-index: 100;position: absolute;background: #fff;}
