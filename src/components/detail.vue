@@ -8,9 +8,7 @@
       <div class="detail__content">
         <div class="container">
           <h1>{{item.title}}</h1>
-          <div class="content">
-            {{item.detail}}
-          </div>
+          <div class="content" v-html='item.detail'></div>
         </div>
       </div>
   </div>
